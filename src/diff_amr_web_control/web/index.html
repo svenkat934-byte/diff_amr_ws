@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Diff AMR Control</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/roslib@1/build/roslib.min.js"></script>
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Diff AMR Control</h1>
+
+        <p id="status">Connecting to ROS 2...</p>
+
+                <!-- Camera + LiDAR side-by-side layout -->
+        <div class="sensor-grid">
+
+            <!-- Camera -->
+            <div class="camera-panel">
+                <h2>Live Robot Camera</h2>
+
+                <img
+                    id="cameraFeed"
+                    alt="Waiting for camera stream..."
+                />
+
+                <p id="cameraStatus">
+                    Waiting for camera...
+                </p>
+            </div>
+
+            <!-- LiDAR -->
+            <div class="lidar-panel">
+                <h2>Live 2D LiDAR</h2>
+
+                <canvas
+                    id="lidarCanvas"
+                    width="600"
+                    height="600">
+                </canvas>
+
+                <p id="lidarStatus">
+                    Waiting for LiDAR data...
+                </p>
+
+                <p id="lidarRange">
+                    Maximum range: -- m
+                </p>
+            </div>
+
+        </div>
+
+        <div class="settings">
+            <label>
+                Linear speed:
+                <span id="linearValue">0.20</span> m/s
+            </label>
+
+            <input id="linearSpeed"
+                   type="range"
+                   min="0.05"
+                   max="0.50"
+                   step="0.05"
+                   value="0.20">
+
+            <label>
+                Angular speed:
+                <span id="angularValue">0.50</span> rad/s
+            </label>
+
+            <input id="angularSpeed"
+                   type="range"
+                   min="0.10"
+                   max="1.50"
+                   step="0.10"
+                   value="0.50">
+        </div>
+
+        <div class="controls">
+            <button class="move" id="forward">▲</button>
+
+            <div class="middle">
+                <button class="move" id="left">◀</button>
+                <button class="stop" id="stop">STOP</button>
+                <button class="move" id="right">▶</button>
+            </div>
+
+            <button class="move" id="backward">▼</button>
+        </div>
+
+        <p class="note">
+            Hold a direction button to move.
+            Release it to stop.
+        </p>
+    </div>
+</body>
+</html>
