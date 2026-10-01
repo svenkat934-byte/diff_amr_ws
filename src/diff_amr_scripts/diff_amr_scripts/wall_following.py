@@ -94,7 +94,7 @@ class WallFollowingNode(Node):
         cmd_vel.twist.angular.z = 0.0
 
         # condition if amr_bot is detect robot in front
-        if (front <= 1.0 or right_front < threshold or left_front > threshold and ((right <= threshold ) or (left >= threshold ))):
+        if (front <= 1.0 or right_front < threshold or left_front > threshold ):
             # condition if amr_bot has detect obstactle at front_right is increaseing distance
             if (right_front < threshold or left_front > threshold):
                  if ((right <= threshold ) or (left >= threshold )):

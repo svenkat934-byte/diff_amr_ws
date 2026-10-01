@@ -1,6 +1,6 @@
 // Connect to ROS 2 through rosbridge
 const ros = new ROSLIB.Ros({
-    url: "ws://localhost:9090"
+    url: "ws://" + window.location.hostname + ":9090"
 });
 
 const statusElement = document.getElementById("status");
@@ -18,7 +18,10 @@ ros.on("connection", function () {
 
 ros.on("error", function (error) {
     console.error("ROS connection error:", error);
-    statusElement.textContent = "ROS connection error";
+
+    statusElement.textContent =
+        "ROS Error: " + (error.message || JSON.stringify(error));
+
     statusElement.style.color = "#f87171";
 });
 

@@ -27,6 +27,10 @@ setup(
             "read_lidar = diff_amr_scripts.read_lidar:main",
             "obstacle_avoid = diff_amr_scripts.obstacle_avoid:main",
             "wall_follwer_node = diff_amr_scripts.wall_following:main",
+            "read_imu = diff_amr_scripts.read_imu:main",
+            "read_camera = diff_amr_scripts.read_camera:main",
+            "detect_qr_marker = diff_amr_scripts.detect_qr_marker:main",            
+            "maze_qr_solver = diff_amr_scripts.maze_qr_solver:main",
             
         ],
     },

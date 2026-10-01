@@ -4,6 +4,22 @@ from launch.actions import IncludeLaunchDescription, ExecuteProcess
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
+
+# # Path to SLAM configuration 
+# slam_rviz_config_path = os.path.join(
+#     get_package_share_directory("diff_amr_mapping"),
+#     'rviz',
+#     'slam.rviz'
+# )
+
+# Path to Localization configuration
+localization_rviz_config_path = os.path.join(
+    get_package_share_directory("diff_amr_localization"),
+    'rviz',
+    'global_localization.rviz'
+)
+
+
 def generate_launch_description():
 
     gazebo = IncludeLaunchDescription(
@@ -13,7 +29,7 @@ def generate_launch_description():
             "gazebo.launch.py"
         ),
         launch_arguments={
-            "world_name": "maze_world"
+            "world_name": "small_house"
         }.items()
     )
 
@@ -27,33 +43,57 @@ def generate_launch_description():
 
     web_socket = IncludeLaunchDescription(
         os.path.join(
-            get_package_share_directory("rosbridge_server"),
+            get_package_share_directory("diff_amr_controller"),
             "launch",
-            "rosbridge_websocket_launch.xml"
+            "web_control.launch.py"
         ),
     )
 
-        # Website HTTP server
-    web_directory = os.path.join(
-        get_package_share_directory("diff_amr_web_control"),
-        "web"
+    # slam = IncludeLaunchDescription(
+    #     os.path.join(
+    #         get_package_share_directory("diff_amr_mapping"),
+    #         "launch",
+    #         "slam.launch.py"
+    #     ),
+    #     launch_arguments={
+    #         "use_sim_time": "True"
+    #     }.items()
+    # )
+
+    global_localization = IncludeLaunchDescription(
+        os.path.join(
+            get_package_share_directory("diff_amr_localization"),
+            "launch",
+            "global_localization.launch.py"
+        ),
+        
     )
 
-    web_server = ExecuteProcess(
-        cmd=[
-            "python3",
-            "-m",
-            "http.server",
-            "8000",
-            "--directory",
-            web_directory
-        ],
-        output="screen"
+    # navigation = IncludeLaunchDescription(
+    #     os.path.join(
+    #         get_package_share_directory("diff_amr_navigation"),
+    #         "launch",
+    #         "navigation.launch.py"
+    #     ),
+    # )
+
+    rviz = Node(
+        package="rviz2",
+        executable="rviz2",
+        name="rviz",
+        output="screen",
+        # arguments=['-d', slam_rviz_config_path] # For Mapping
+        arguments=['-d', localization_rviz_config_path] # For Localization
     )
+
 
     return LaunchDescription([
         gazebo,
         controller,
         web_socket,
-        web_server,
+        #slam,
+        global_localization,
+        rviz,
+        #navigation
+     
     ])

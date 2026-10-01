@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>diff_amr_bringup</name>
+  <name>diff_amr_localization</name>
   <version>0.0.0</version>
   <description>TODO: Package description</description>
   <maintainer email="Saivenkatkadavergu@todo.com">saivenkat</maintainer>
@@ -9,16 +9,12 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>rviz2</depend>
-  <depend>rplidar_ros</depend>
-  <depend>diff_amr_description</depend>
-  <depend>diff_amr_controller</depend>
-  <depend>diff_amr_web_control</depend>
-  <depend>diff_amr_mapping</depend>
-  <depend>diff_amr_localization</depend>
-  <depend>diff_amr_navigation</depend>
-
-  <exec_depend>rosbridge_server</exec_depend>
+  <exec_depend>robot_localization</exec_depend>
+  <exec_depend>nav2_amcl</exec_depend>
+  <exec_depend>nav2_map_server</exec_depend>
+  <exec_depend>nav2_lifecycle_manager</exec_depend>
+  <exec_depend>tf_transformations</exec_depend>
+  <exec_depend>diff_amr_mapping</exec_depend>
 
 
   <test_depend>ament_lint_auto</test_depend>
