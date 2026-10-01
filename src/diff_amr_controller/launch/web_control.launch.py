@@ -76,7 +76,7 @@ def generate_launch_description():
         ),
         launch_arguments={
             "cmd_vel_out":
-                "wheel_controller/cmd_vel_unstamped",
+                "wheel_controller/cmd_vel",
 
             "config_topics": os.path.join(
                 controller_pkg,

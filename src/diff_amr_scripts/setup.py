@@ -31,6 +31,7 @@ setup(
             "read_camera = diff_amr_scripts.read_camera:main",
             "detect_qr_marker = diff_amr_scripts.detect_qr_marker:main",            
             "maze_qr_solver = diff_amr_scripts.maze_qr_solver:main",
+            "polygon_drawer = diff_amr_scripts.polygon_drawer:main",
             
         ],
     },
